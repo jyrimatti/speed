@@ -1,0 +1,199 @@
+'<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.time.min.js"></script>
+<script src="jquery.flot.rangeselection.js"></script>
+<!--<script src="jquery.flot.autoMarkings.js"></script>-->
+<script src="jquery.flot.tooltip.min.js"></script>
+<script src="jquery.flot.downsample.js"></script>
+<!--<script src="jquery.flot.touch.js"></script>-->
+<style type="text/css">
+.plot {
+  width: 100%;
+  height: 800px;
+}
+#smallgraph {
+  height: 50px;
+  clear: both;
+}
+.button, a {
+  width: 85px;
+  text-align: center;
+  height: 15px;
+  border: 1px solid Black;
+  background-color: LightGray;
+  padding: 3px;
+  float: left;
+  margin-left: 3px;
+}
+a {
+  width: 50px;
+  text-decoration: none;
+}
+a.first {
+  margin-left: 30px;
+}
+.selected {
+  background-color: LightBlue;
+}
+.flot-x-axis div {
+  margin-left: 40px;
+}
+</style>
+</head>
+<body>
+<div id="smallgraph" class="plot"></div>
+
+<script type="text/javascript">
+  var pGraphs = [];
+  var sGraph;
+
+  var opts = {
+    xaxis: {
+      mode: 'time',
+      timezone: 'browser',
+      timeformat: "%e.%m.%Y<br/>%H:%M",
+      font: {
+          size: 10,
+          color: 'black'
+      }
+    },
+    yaxes: [{show: true, min: -2, max: 12000000}, {show: true, min: -1, max: 500, position: 'right'}],
+    series: {
+      lines: {
+        show: true,
+        steps: false
+      },
+      points: {
+        show: true
+      },
+      autoMarkings: {
+        enabled: true,
+          showMinMax: true,
+          showAvg: true
+      }
+    },
+    grid: {
+      hoverable: true,
+      autoHighlight: true
+    },
+    tooltip: {
+      show: true,
+      content: "%x | %y.1"
+    },
+    legend: {
+      show: true,
+      position: "nw"
+    }
+  };
+
+var g = function(data, index) {
+  var ret = data.filter(function(x) { return !x.error; }).map(function(x) { return [new Date(x.timestamp).getTime(), (index(x) || -1) ]; });
+  return ret;
+};
+
+  var getAndDraw = function(name) {
+    $(document.body).append('<div class="plotname">' + name + '</div><div id="' + name + '" class="plot"></div>');
+    $.get('speed.json', null, function( data ) {
+      if (data != "") {
+        var d = JSON.parse('[' + data.replaceAll(/,[, \n]*/g,',').replace(/[, \n]*$/, '') + ']');
+         draw(name, [{label: 'upload/MBps', color: 'Blue', data: g(d, function(x) { return x.upload.bandwidth; }), yaxis: 1},
+                     {label: 'download/MBps', color: 'Red', data: g(d, function(x) { return x.download.bandwidth; }), yaxis: 1},
+                     {label: 'latency/ms', color: 'Gray', data: g(d, function(x) { return x.ping.latency; }), yaxis: 2}
+	            ]);
+      }
+    }, 'text');
+  };
+
+  var draw = function(name, data, additionalOpts) {
+      if (sGraph.getData().length == 0) {
+        sGraph.setData($.extend(true,[],data));
+        sGraph.getData()[0].label = null;
+        sGraph.setupGrid();
+        sGraph.draw();
+      }
+      if (document.getElementById(name)) {
+        var pGraph = $.plot($('#'+name), data, $.extend({}, opts, additionalOpts));
+        pGraphs.push(pGraph);
+        $('.button.selected').click();
+      }
+  };
+
+  var rangeselectionCallback = function(o){
+      pGraphs.filter(function(pGraph) { var op = pGraph.getAxes().xaxis.options; return op.min != o.start || op.max != o.end; }).forEach(function(pGraph) {
+          var xaxis = pGraph.getAxes().xaxis;
+          xaxis.options.min = o.start;
+          xaxis.options.max = o.end;
+          pGraph.setupGrid();
+          pGraph.draw();
+      });
+  };
+
+  sGraph = $.plot("#smallgraph",{},$.extend([],opts,{
+            lines: {show: false},
+            points: {show: false},
+            xaxis: { mode: 'time', timezone: 'browser', timeformat: "%Y-%m-%d" },
+            yaxis: {show: false},
+            grid:{
+                color: "#666",
+                backgroundColor: { colors: ["#ddd", "#fff"]}
+            },
+            rangeselection:{
+                color: "cyan",
+                start: 20,
+                end: 100,
+                enabled: true,
+                callback: rangeselectionCallback
+            }
+        }));
+
+  var year = new URLSearchParams(window.location.search).get('year');
+  var time = new URLSearchParams(window.location.search).get('time');
+  var now = time ? new Date(time) : year ? new Date(parseInt(year)+1,0,0) : new Date();
+  now.setSeconds(0);
+  now.setMilliseconds(0);
+  now = now.getTime() - 60*1000;
+  var quickSelect = function(delta, label) {
+    return $('<div class="button">' + label + '</div>').prependTo(document.body).click(function() {
+      $('.button').removeClass('selected');
+      $(this).addClass('selected');
+      sGraph.setSelection(now - delta, now);
+      rangeselectionCallback({start: now - delta, end: now});
+    });
+  };
+
+  quickSelect(1000*60*60*24*365, 'last 365 days');
+  quickSelect(1000*60*60*24*30, 'last 30 days');
+  quickSelect(1000*60*60*24*7, 'last 7 days');
+  quickSelect(1000*60*60*24*3, 'last 3 days');
+  quickSelect(1000*60*60*24, 'last 24h').click();
+  quickSelect(1000*60*60*10, 'last 10h');
+  quickSelect(1000*60*60, 'last 60min');
+  quickSelect(1000*60*15, 'last 15min');
+
+  var onPage = function(id) {
+    return window.location.href.indexOf(id) != -1 || id=='status' && window.location.href.indexOf('#') == -1;
+  };
+
+  var initGraphs = function() {
+    getAndDraw('speed');
+  };
+
+  window.onhashchange = function() {
+    $('.plotname').remove();
+    $('.plot:not(#smallgraph)').each(function() {
+      var plot = $(this).data('plot');
+      if (plot) {
+        pGraphs.splice(pGraphs.indexOf(plot), 1);
+        $(this).remove();
+      }
+    });
+    initGraphs();
+  };
+
+  initGraphs();
+</script>
+</body>
+</html>
+
