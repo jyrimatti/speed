@@ -98,11 +98,9 @@ var g = function(data, index) {
     $.get('speed.json', null, function( data ) {
       if (data != "") {
         var d = JSON.parse('[' + data.replaceAll(/,[, \n]*/g,',').replace(/[, \n]*$/, '') + ']');
-         draw(name, [{label: 'upload bandwidth', color: 'LightBlue', data: g(d, function(x) { return x.upload.bandwidth*8; }), yaxis: 1},
-                     {label: 'download bandwidth', color: 'Pink', data: g(d, function(x) { return x.download.bandwidth*8; }), yaxis: 1},
-                     {label: 'upload bytes', color: 'Blue', data: g(d, function(x) { return x.upload.bytes; }), yaxis: 1},
-                     {label: 'download bytes', color: 'Red', data: g(d, function(x) { return x.download.bytes; }), yaxis: 1},
-                     {label: 'latency/ms', color: 'LightGray', data: g(d, function(x) { return x.ping.latency; }), yaxis: 2}
+         draw(name, [{label: 'upload/bps', color: 'Blue', data: g(d, function(x) { return x.upload.bytes || x.upload; }), yaxis: 1},
+                     {label: 'download/bps', color: 'Red', data: g(d, function(x) { return x.download.bytes || x.download; }), yaxis: 1},
+                     {label: 'latency/ms', color: 'LightGray', data: g(d, function(x) { return x.ping.latency || x.ping; }), yaxis: 2}
 	            ]);
       }
     }, 'text');
