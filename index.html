@@ -59,7 +59,7 @@ a.first {
           color: 'black'
       }
     },
-    yaxes: [{show: true, min: -2, max: 400000000}, {show: true, min: -1, max: 40, position: 'right'}],
+    yaxes: [{show: true, min: -2, max: 400}, {show: true, min: -1, max: 40, position: 'right'}],
     series: {
       lines: {
         show: true,
@@ -98,8 +98,8 @@ var g = function(data, index) {
     $.get('speed.json', null, function( data ) {
       if (data != "") {
         var d = JSON.parse('[' + data.replaceAll(/,[, \n]*/g,',').replace(/[, \n]*$/, '') + ']');
-         draw(name, [{label: 'upload/bps', color: 'Blue', data: g(d, function(x) { return x.upload.bytes || x.upload; }), yaxis: 1},
-                     {label: 'download/bps', color: 'Red', data: g(d, function(x) { return x.download.bytes || x.download; }), yaxis: 1},
+         draw(name, [{label: 'upload/Mbps', color: 'Blue', data: g(d, function(x) { return x.upload.bandwidth/125000 || x.upload; }), yaxis: 1},
+                     {label: 'download/Mbps', color: 'Red', data: g(d, function(x) { return x.download.bandwidth/125000 || x.download; }), yaxis: 1},
                      {label: 'latency/ms', color: 'LightGray', data: g(d, function(x) { return x.ping.latency || x.ping; }), yaxis: 2}
 	            ]);
       }
