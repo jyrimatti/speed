@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell --pure --keep XDG_RUNTIME_DIR -i dash -I channel:nixos-23.11-small -p dash flock
+#! nix-shell --pure --keep XDG_RUNTIME_DIR --keep NIX_ALLOW_UNFREE -i dash -I channel:nixos-23.11-small -p dash ookla-speedtest flock
 set -eu
 
 serverid="$1"

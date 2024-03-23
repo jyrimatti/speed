@@ -4,4 +4,4 @@ set -eu
 
 selector="${1:-}"
 
-dash ./speedtest_cached.sh "$(cat .speed-host)" | jq -r ".$selector"
+NIXPKGS_ALLOW_UNFREE=1 ./speedtest_cached.sh "$(cat .speed-host)" | jq -r ".$selector"
