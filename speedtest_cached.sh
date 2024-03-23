@@ -4,7 +4,7 @@ set -eu
 
 serverid="$1"
 
-minutes=5
+minutes=55
 
 outputfile="${XDG_RUNTIME_DIR:-/tmp}/$(basename "$PWD")/$serverid"
 
