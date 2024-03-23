@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell --pure --keep XDG_RUNTIME_DIR -i dash -I channel:nixos-23.11-small -p nix dash flock
+#! nix-shell --pure --keep XDG_RUNTIME_DIR -i dash -I channel:nixos-23.11-small -p dash flock
 set -eu
 
 serverid="$1"
@@ -22,7 +22,7 @@ test -e "$dir" || mkdir -p "$dir"
     flock 8
 
     fetch() {
-        NIXPKGS_ALLOW_UNFREE=1 nix-shell -p ookla-speedtest --run "speedtest -f json -s '$serverid' > '$outputfile'"
+        speedtest -f json -s "$serverid" > "$outputfile"
     }
 
     if [ ! -f "$outputfile" ] || [ ! -s "$outputfile" ]; then
