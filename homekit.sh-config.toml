@@ -1,0 +1,253 @@
+[[services]]
+type = "AccessoryInformation"
+
+[services.characteristics]
+Identify = {} # leave property completely out 'cos otherwise Homekit won't accept
+Manufacturer = "Jyri-Matti Lähteenmäki"
+Model = "Speedtest"
+Name = "Speedtest"
+SerialNumber = "AA:AA:AA:AA:AA:13"
+FirmwareRevision = "100.1.1"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Ping high"
+ConfiguredName = "Ping high"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/ping_high.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Ping jitter"
+ConfiguredName = "Ping jitter"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/ping_jitter.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Ping latency"
+ConfiguredName = "Ping latency"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/ping_latency.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Ping low"
+ConfiguredName = "Ping low"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/ping_low.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Download bandwidth"
+ConfiguredName = "Download bandwidth"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/download_bandwidth.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Download bytes"
+ConfiguredName = "Download bytes"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/download_bytes.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Download elapsed"
+ConfiguredName = "Download elapsed"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/download_elapsed.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Download latency high"
+ConfiguredName = "Download latency high"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/download_latency_high.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Download latency iqm"
+ConfiguredName = "Download latency iqm"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/download_latency_iqm.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Download latency jitter"
+ConfiguredName = "Download latency jitter"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/download_latency_jitter.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Download latency low"
+ConfiguredName = "Download latency low"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/download_latency_low.sh"
+
+
+
+
+
+
+
+
+
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Upload bandwidth"
+ConfiguredName = "Upload bandwidth"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/upload_bandwidth.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Upload bytes"
+ConfiguredName = "Upload bytes"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/upload_bytes.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Upload elapsed"
+ConfiguredName = "Upload elapsed"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/upload_elapsed.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Upload latency high"
+ConfiguredName = "Upload latency high"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/upload_latency_high.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Upload latency iqm"
+ConfiguredName = "Upload latency iqm"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/upload_latency_iqm.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Upload latency jitter"
+ConfiguredName = "Upload latency jitter"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/upload_latency_jitter.sh"
+
+
+[[services]]
+type = "TemperatureSensor"
+
+[services.characteristics]
+Name = "Upload latency low"
+ConfiguredName = "Upload latency low"
+[services.characteristics.CurrentTemperature]
+minValue = -99
+maxValue = 99
+minStep = 0.001
+cmd = "cd speed; ./cmd/upload_latency_low.sh"
