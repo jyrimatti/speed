@@ -1,10 +1,10 @@
 #! /usr/bin/env nix-shell
-#! nix-shell --pure --keep XDG_RUNTIME_DIR --keep NIX_ALLOW_UNFREE -i dash -I channel:nixos-23.11-small -p dash ookla-speedtest flock
+#! nix-shell --pure --keep XDG_RUNTIME_DIR --keep NIX_ALLOW_UNFREE --keep SPEEDTEST_CACHED_MINUTES -i dash -I channel:nixos-23.11-small -p dash ookla-speedtest flock
 set -eu
 
 serverid="$1"
 
-minutes=55
+minutes="${SPEEDTEST_CACHED_MINUTES:-300}"
 
 outputfile="${XDG_RUNTIME_DIR:-/tmp}/$(basename "$PWD")/$serverid"
 

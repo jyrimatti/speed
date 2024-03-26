@@ -4,6 +4,8 @@ set -eu
 
 stamp="$(date +%s)"
 
+export SPEEDTEST_CACHED_MINUTES=60
+
 for x in ping_high\
          ping_jitter\
          ping_latency\
