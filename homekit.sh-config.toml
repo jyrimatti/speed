@@ -18,7 +18,7 @@ Name = "Ping high"
 ConfiguredName = "Ping high"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/ping_high.sh"
 
@@ -31,7 +31,7 @@ Name = "Ping jitter"
 ConfiguredName = "Ping jitter"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/ping_jitter.sh"
 
@@ -44,7 +44,7 @@ Name = "Ping latency"
 ConfiguredName = "Ping latency"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/ping_latency.sh"
 
@@ -57,7 +57,7 @@ Name = "Ping low"
 ConfiguredName = "Ping low"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/ping_low.sh"
 
@@ -70,7 +70,7 @@ Name = "Download bandwidth"
 ConfiguredName = "Download bandwidth"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 9999999999
 minStep = 0.001
 cmd = "cd speed; ./cmd/download_bandwidth.sh"
 
@@ -83,7 +83,7 @@ Name = "Download bytes"
 ConfiguredName = "Download bytes"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 9999999999
 minStep = 0.001
 cmd = "cd speed; ./cmd/download_bytes.sh"
 
@@ -96,7 +96,7 @@ Name = "Download elapsed"
 ConfiguredName = "Download elapsed"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/download_elapsed.sh"
 
@@ -109,7 +109,7 @@ Name = "Download latency high"
 ConfiguredName = "Download latency high"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/download_latency_high.sh"
 
@@ -122,7 +122,7 @@ Name = "Download latency iqm"
 ConfiguredName = "Download latency iqm"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/download_latency_iqm.sh"
 
@@ -135,7 +135,7 @@ Name = "Download latency jitter"
 ConfiguredName = "Download latency jitter"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/download_latency_jitter.sh"
 
@@ -148,7 +148,7 @@ Name = "Download latency low"
 ConfiguredName = "Download latency low"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/download_latency_low.sh"
 
@@ -170,7 +170,7 @@ Name = "Upload bandwidth"
 ConfiguredName = "Upload bandwidth"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 9999999999
 minStep = 0.001
 cmd = "cd speed; ./cmd/upload_bandwidth.sh"
 
@@ -183,7 +183,7 @@ Name = "Upload bytes"
 ConfiguredName = "Upload bytes"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 9999999999
 minStep = 0.001
 cmd = "cd speed; ./cmd/upload_bytes.sh"
 
@@ -196,7 +196,7 @@ Name = "Upload elapsed"
 ConfiguredName = "Upload elapsed"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/upload_elapsed.sh"
 
@@ -209,7 +209,7 @@ Name = "Upload latency high"
 ConfiguredName = "Upload latency high"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/upload_latency_high.sh"
 
@@ -222,7 +222,7 @@ Name = "Upload latency iqm"
 ConfiguredName = "Upload latency iqm"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/upload_latency_iqm.sh"
 
@@ -235,7 +235,7 @@ Name = "Upload latency jitter"
 ConfiguredName = "Upload latency jitter"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/upload_latency_jitter.sh"
 
@@ -248,6 +248,6 @@ Name = "Upload latency low"
 ConfiguredName = "Upload latency low"
 [services.characteristics.CurrentTemperature]
 minValue = -99
-maxValue = 99
+maxValue = 99999
 minStep = 0.001
 cmd = "cd speed; ./cmd/upload_latency_low.sh"
