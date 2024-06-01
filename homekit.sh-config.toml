@@ -1,3 +1,7 @@
+bridge = "speed"
+port = 12313
+username = "AA:AA:AA:AA:AA:13"
+
 [[services]]
 type = "AccessoryInformation"
 
