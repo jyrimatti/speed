@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell --pure --keep XDG_RUNTIME_DIR --keep NIXPKGS_ALLOW_UNFREE -i dash -I channel:nixos-23.11-small -p nix dash jq flock ookla-speedtest
+#! nix-shell --pure --keep CREDENTIALS_DIRECTORY --keep XDG_RUNTIME_DIR --keep NIXPKGS_ALLOW_UNFREE -i dash -I channel:nixos-23.11-small -p nix dash jq flock ookla-speedtest
 set -eu
 
 stamp="$(date +%s)"
@@ -25,5 +25,5 @@ for x in ping_high\
          upload_latency_jitter\
          upload_latency_low\
     ; do
-    dash ./cmd/speed.sh "$(echo "$x" | tr '_' '.')" | { read -r d; echo "[$stamp,$d]"; } | dash ./speed_convert.sh "$x"
+    dash ./speed.sh "$(echo "$x" | tr '_' '.')" | { read -r d; echo "[$stamp,$d]"; } | dash ./speed_convert.sh "$x"
 done;

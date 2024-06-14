@@ -2,4 +2,4 @@
 #! nix-shell -i dash -I channel:nixos-23.11-small -p dash jq flock ookla-speedtest
 set -eu
 
-dash ./cmd/speed.sh upload.latency.iqm
+dash ./speed.sh upload.latency.iqm

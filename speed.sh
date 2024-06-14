@@ -4,4 +4,6 @@ set -eu
 
 selector="${1:-}"
 
-dash ./speedtest_cached.sh "$(cat .speed-host)" | jq -r ".$selector"
+. ./speed_env.sh
+
+dash ./speedtest_cached.sh "$SPEED_HOST" | jq -r ".$selector"
