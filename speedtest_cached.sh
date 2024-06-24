@@ -27,6 +27,8 @@ test -e "$dir" || mkdir -p "$dir"
         speedtest -f json -s "$serverid" > "$tmpfile"
         if [ -s "$tmpfile" ]; then
             mv "$tmpfile" "$outputfile"
+        else
+            rm "$tmpfile"
         fi
     }
 
