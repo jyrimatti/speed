@@ -24,7 +24,7 @@ test -e "$dir" || mkdir -p "$dir"
 
     fetch() {
         tmpfile="$(mktemp "${XDG_RUNTIME_DIR:-/tmp}/speedtest_cached.XXXXXX")"
-        speedtest -f json -s "$serverid" > "$tmpfile"
+        speedtest --accept-gdpr -f json -s "$serverid" > "$tmpfile"
         if [ -s "$tmpfile" ]; then
             mv "$tmpfile" "$outputfile"
         else
