@@ -6,7 +6,7 @@ set -eu
 stamp="$(date +%s)"
 
 # clear cache
-touch "${BKT_CACHE_DIR:-/tmp}/speed-invalidate"
+touch "${BKT_CACHE_DIR:-/tmp}/speed.lock"
 
 for x in ping_high\
          ping_jitter\

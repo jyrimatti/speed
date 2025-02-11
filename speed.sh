@@ -10,7 +10,9 @@ selector="${1:-}"
 # shared cache for everyone, since speedtest is not fast enough for real-time querying
 export BKT_SCOPE="all_speed_invokers"
 
-bkt --discard-failures --ttl 24h --modtime "${BKT_CACHE_DIR:-/tmp}/speed-invalidate" -- \
-    flock "${BKT_CACHE_DIR:-/tmp}/speed.lock" \
+lock="${BKT_CACHE_DIR:-/tmp}/speed.lock"
+
+flock "$lock" \
+    bkt --discard-failures --ttl 24h --modtime "$lock" -- \
         speedtest --accept-gdpr -f json -s "$SPEED_HOST" \
   | jq -r ".$selector"
