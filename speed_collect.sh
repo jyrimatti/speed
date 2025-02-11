@@ -1,10 +1,12 @@
-#! /usr/bin/env nix-shell
-#! nix-shell --pure --keep CREDENTIALS_DIRECTORY --keep XDG_RUNTIME_DIR --keep NIXPKGS_ALLOW_UNFREE -i dash -I channel:nixos-24.11-small -p nix dash jq flock ookla-speedtest
+#! /usr/bin/env NIXPKGS_ALLOW_UNFREE=1 nix-shell
+#! nix-shell --pure --keep CREDENTIALS_DIRECTORY --keep BKT_CACHE_DIR --keep NIXPKGS_ALLOW_UNFREE
+#! nix-shell -i dash -I channel:nixos-24.11-small -p nix dash jq flock ookla-speedtest bkt
 set -eu
 
 stamp="$(date +%s)"
 
-export SPEEDTEST_CACHED_MINUTES=60
+# clear cache
+touch "${BKT_CACHE_DIR:-/tmp}/speed-invalidate"
 
 for x in ping_high\
          ping_jitter\
