@@ -6,6 +6,7 @@ set -eu
 stamp="$(date +%s)"
 
 # clear cache
+export BKT_CACHE_DIR="/tmp"
 touch "${BKT_CACHE_DIR:-/tmp}/speed.lock"
 
 for x in ping_high\
