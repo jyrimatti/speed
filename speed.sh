@@ -7,10 +7,6 @@ selector="${1:-}"
 
 . ./speed_env.sh
 
-# shared cache for everyone, since speedtest is not fast enough for real-time querying
-export BKT_SCOPE="all_speed_invokers"
-
-export BKT_CACHE_DIR="/tmp"
 lock="${BKT_CACHE_DIR:-/tmp}/speed.lock"
 
 flock "$lock" \
